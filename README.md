@@ -1,1 +1,3 @@
-# weather_api_pipeline
+# Weather API Pipeline
+## Overview
+Using Python, create a data pipeline to extract, transform, and load weather data into a PostgreSQL database. 
