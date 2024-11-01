@@ -53,23 +53,26 @@ with DAG(
     @task()
     def transform_weather_data(data):
         try:
-            # Transform the JSON
+            # Transform the response data
             transformed_weather = {
-                "latitude": data["lat"],
-                "longitude": data["lon"],
-                "country": data["country"],
+                "latitude": data["coord"]["lat"],
+                "longitude": data["coord"]["lon"],
+                "country": data["sys"]["country"],
                 "city_id": data["id"],
-                "city_name": data["nam"],
-                "weather": data["weather"]["description"],
+                "city_name": data["name"],
+                "weather": data["weather"][0]["description"],
                 "temperature": data["main"]["temp"],
                 "humidity": data["main"]["humidity"],
                 "visibility": data["visibility"],
-                "wind_speed": data["speed"],
-                "cloud_percent": data["all"],
+                "wind_speed": data["wind"]["speed"],
+                "cloud_percent": data["clouds"]["all"],
                 "point_in_time": data["dt"]
             }
 
-            transformed_weather = pd.DataFrame([transformed_weather])
+            message = "Successfully transformed JSON API response into dictionary"
+            logging.info("Log: {}".format(message))
+            print("Print: {}".format(message))
+
             return transformed_weather
 
         except Exception as e:
@@ -80,26 +83,23 @@ with DAG(
     @task()
     def load_weather_data(transformed_weather):
         try:
+            # Load transformed data into Pandas dataframe
+            loading_weather_df = pd.DataFrame([transformed_weather])
+
             # Create a connection to the PostgreSQL database
             engine = create_engine(db_connection)
             message = "Successfully connected to Postgres"
             logging.info("Log: {}".format(message))
             print("Print: {}".format(message))
-            # Load the DataFrame into the database
-            transformed_weather.to_sql('hourly_weather_histories', engine, if_exists='append', index=False)
 
-            # Log the number of rows inserted
-            rows_inserted = transformed_weather.shape[0]
-            message = "Merged {0} rows into hourly_weather_histories".format(rows_inserted)
-            logger.info("Log: {}".format(message))
-            print("Print: {}".format(message))
+            # Load the DataFrame into the database
+            loading_weather_df.to_sql('hourly_weather_histories', con=engine, if_exists='append', index=False)
 
         except SQLAlchemyError as e:
             logger.error("Log: EXCEPTION | Error loading to Postgres {}".format(e))
             print("Print: EXCEPTION | Error loading to Postgres : {} ".format(e))
             raise
 
-
-    open_weather = fetch_weather_data()
-    transformed_data = transform_weather_data(open_weather)
+    open_weather_data = fetch_weather_data()
+    transformed_data = transform_weather_data(open_weather_data)
     load_weather_data(transformed_data)
