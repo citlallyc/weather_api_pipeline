@@ -69,7 +69,7 @@ COMMENT ON COLUMN weather_data_histories.visibility IS 'Visibility in meters';
 ## Unit Test considerations
 
 To make this more robust, I would recommend diving further into the *pytest* python testing framework for unit testing. Here the goal would be to write small and readable tests for this entire workflow. \
-I would consider using a sample JSON file for the transformation step and run the workflow individually and export the output to ensure it looks as intended. Run a similar process as the transformation step and load the data into your local setup/database. The steps to create the table are in this readME. Confirm all tables have been imported.
+I would consider using a sample JSON file for the transformation step and run the workflow individually and export the output to ensure it looks as intended. Run a similar process as the transformation step and load the data into your local setup/database. The steps to create the table are in this readME, you should confirm all columns are populated after running.
 
 
 
