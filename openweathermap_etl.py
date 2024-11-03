@@ -73,7 +73,7 @@ with DAG(
                 "visibility": data["visibility"],
                 "wind_speed": data["wind"]["speed"],
                 "cloud_percent": data["clouds"]["all"],
-                "point_in_time": (datetime.datetime.utcfromtimestamp(data["dt"]) + datetime.timedelta(seconds=data["timezone"])).strftime("%Y-%m-%d %H:%M:%S")#datetime.datetime.fromtimestamp(data["dt"]).strftime("%Y-%m-%d %H:%M:%S")
+                "point_in_time": (datetime.datetime.utcfromtimestamp(data["dt"]) + datetime.timedelta(seconds=data["timezone"])).strftime("%Y-%m-%d %H:%M:%S")
             }
 
             message = "Successfully transformed JSON API response into dictionary"
