@@ -21,7 +21,7 @@ Before beginning this pipeline, the assumptions made in order to complete this w
 
 ## Structure
 
-**Tasks**:
+**Tasks**: \
 ```fetch_weather_data()```: Grabs JSON data through requests library and stores result into a variable, data
 
 ```transform_weather_data()```: Transforms the response data into a dictionary, renaming and normalizing some columns. Specific transformations include: Changing column tempurature from Kelvin to Farenheit, point_in_time to the country's local timezone
@@ -76,5 +76,7 @@ I would consider using a sample JSON file for the transformation step and run th
 ## Reflection
 
 With more resources, I would have loved to implement an intermediate table that holds all the raw JSON API data. In case of failure, at least we would have the data stored historically in our database. This would be beneficial for error handling as well.
+
+Secondly, if we could automate choosing latitude and longitude inputs, we could get different weather all at once.
 
 To better monitor errors, I would like to define a simple callback upon failure using Airflow's EmailOperator to send essential team members an update if a portion of the workflow failed.
