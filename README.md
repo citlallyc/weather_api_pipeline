@@ -77,6 +77,6 @@ I would consider using a sample JSON file for the transformation step and run th
 
 With more resources, I would have loved to implement an intermediate table that holds all the raw JSON API data. In case of failure, at least we would have the data stored historically in our database. This would be beneficial for error handling as well.
 
-Secondly, if we could automate choosing latitude and longitude inputs, we could get different weather all at once.
+Secondly, if we could automate choosing latitude and longitude inputs, we could get different weather data all at once.
 
 To better monitor errors, I would like to define a simple callback upon failure using Airflow's EmailOperator to send essential team members an update if a portion of the workflow failed.
