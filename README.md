@@ -66,11 +66,10 @@ COMMENT ON COLUMN weather_data_histories.cloud_percent IS 'Percent cloudiness';
 COMMENT ON COLUMN weather_data_histories.visibility IS 'Visibility in meters';
  ```
 
-## Unit Test considerations
+## Unit Test Considerations
 
-To make this more robust, I would recommend diving further into the *pytest* python testing framework for unit testing. Here the goal would be to write small and readable tests for this entire workflow. \
-API testing flow should include sending the request with necessary input data. That you are passing well-formed or correct parameters to the API calls, get the response having output data and verify that the response returned as expected in the requirement. Consider: API returns an empty string, either raise an error or input a “NULL” default value.  \
-
+To make this more robust, I would recommend diving further into the *pytest* python testing framework for unit testing. Here the goal would be to write small and readable tests for this entire workflow.\
+API testing flow should include sending the request with necessary input data, passing well-formed or correct parameters to the API calls, getting the response having output data and verify that the response returned as expected in the requirement. Consideration: If API returns an empty string, then raise an error.\
 Use the JSON data for transformation testing and run a similar process for the loading step. (The steps to create the table are in this readME). Then, you should confirm all columns are populated after running.
 
 
