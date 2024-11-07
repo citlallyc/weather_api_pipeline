@@ -22,11 +22,11 @@ Before beginning this pipeline, the assumptions made in order to complete this w
 ## Structure
 
 **Tasks**: \
-```fetch_weather_data()```: Grabs JSON data through requests library and stores result into a variable, data
+```fetch_weather_data()```: Grabs JSON data through requests library and stores result into a variable called **data**
 
-```transform_weather_data()```: Transforms the response data into a dictionary, renaming and normalizing some columns. Specific transformations include: Changing column tempurature from Kelvin to Farenheit, point_in_time to the country's local timezone
+```transform_weather_data()```: Transforms the response data into a dictionary, renaming and normalizing some columns. Specific transformations include: Changing column temperature from Kelvin to Farenheit, point_in_time to the country's local timezone
 
-```load_weather_data()```: Converts dictionary to dataframe and loads data into Postgres table,**weather_data_histories**,  with provided insert query. 
+```load_weather_data()```: Converts dictionary to dataframe and loads data into our Postgres table,**weather_data_histories**, with the provided insert query. 
 
 ## Prerequisites
 * Python 3.9
