@@ -2,9 +2,9 @@
 
 ## Overview
 
-Using Python, create a simple data pipeline to extract, transform, and load weather data into a PostgreSQL database for easier analysis. The pipeline is orchestrated with Airflow and automatically updates weather data in regular intervals.
+Objective: Using Python, create a simple data pipeline to extract, transform, and load weather data into a PostgreSQL database for easier analysis. The pipeline is orchestrated with Airflow and automatically inserts weather data in regular intervals.
 
-The code currently uses ```try-except``` blocks to catch exceptions when making API call. The pipeline runs on a 30-minute schedule which is within API rate limits, but will raise an error if too many calls are made.
+The code currently uses ```try-except``` blocks to catch exceptions throughout the pipeline. The workflow runs on a 30-minute schedule which is within API rate limits, but will raise an warning if too many calls are made.
 
 ### Assumptions
 
@@ -22,7 +22,7 @@ Before beginning this pipeline, the assumptions made in order to complete this w
 ## Structure
 
 **Tasks**: \
-```fetch_weather_data()```: Grabs JSON data through requests library and stores result into a variable called **data**
+```fetch_weather_data()```: Grabs JSON data through the requests library and stores the result into a variable called, **data**
 
 ```transform_weather_data()```: Transforms the response data into a dictionary, renaming and normalizing some columns. Specific transformations include: Changing column temperature from Kelvin to Farenheit, point_in_time to the country's local timezone
 
