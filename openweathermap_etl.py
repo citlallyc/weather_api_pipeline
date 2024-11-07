@@ -50,7 +50,7 @@ with DAG(
         except requests.exceptions.RequestException as e:
             if response.status_code == 429:
                 message = 'WARNING: Rate limit reached!'
-                logger.error(message)
+                logger.warning(message)
                 print(message)
 
             logging.error("Log: EXCEPTION | Error on API {}".format(e))
