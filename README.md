@@ -69,9 +69,12 @@ COMMENT ON COLUMN weather_data_histories.visibility IS 'Visibility in meters';
 ## Unit Test Considerations
 
 To make this more robust, I would recommend diving further into the *pytest* python testing framework for unit testing. Here the goal would be to write small and readable tests for this entire workflow.\
-API testing flow should include sending the request with necessary input data, passing well-formed or correct parameters to the API calls, getting the response having output data and verify that the response returned as expected in the requirement. Consideration: If API returns an empty string, then raise an error.\
-Use the JSON data for transformation testing and run a similar process for the loading step. (The steps to create the table are in this readME). Then, you should confirm all columns are populated after running.
-
+\
+The API test flow should include sending the request with necessary input data, passing well-formed or correct parameters to the API calls, retrieving the response data, and verifying that the response returns as expected. Consideration: If API returns an empty string, then raise an error.\
+\
+Using that JSON data or a sample set, we should create tests to confirm the transformations are applied correctly, ensuring that fields are in the expected format, and that the data is normalized before it goes into the database.\
+\
+We can perform a similar process for the loading step. (The steps to create the table are in this readME). We should create a test that after loading, all necessary columns are populated as expected. This includes checking data types, constraints, and ensuring no critical values are missing.
 
 ## Reflection
 
