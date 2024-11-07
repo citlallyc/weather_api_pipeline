@@ -26,7 +26,7 @@ Before beginning this pipeline, the assumptions made in order to complete this w
 
 ```transform_weather_data()```: Transforms the response data into a dictionary, renaming and normalizing some columns. Specific transformations include: Changing column tempurature from Kelvin to Farenheit, point_in_time to the country's local timezone
 
-```load_weather_data()```: Converts dictionary to dataframe and loads data into Postgres table,**weather_data_histories**,  with provided insert query. We add a constraint on latitude, longitude, point_in_time to ensure duplicate entries will be rejected by the database.
+```load_weather_data()```: Converts dictionary to dataframe and loads data into Postgres table,**weather_data_histories**,  with provided insert query. 
 
 ## Prerequisites
 * Python 3.9
